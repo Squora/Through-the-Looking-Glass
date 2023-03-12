@@ -1,0 +1,157 @@
+{
+    "name": "inputActions",
+    "maps": [
+        {
+            "name": "player",
+            "id": "cef5aad8-d349-4643-9415-4a0582876407",
+            "actions": [
+                {
+                    "name": "jump",
+                    "type": "Button",
+                    "id": "549c71ac-2aee-4ad5-941a-0ed809503b3c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "walk",
+                    "type": "Value",
+                    "id": "066aa266-3e87-44d3-8321-7283211d83be",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "crouch",
+                    "type": "Button",
+                    "id": "372f34c7-282b-45b3-a51c-8f6db2098fa0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a92105b3-e73b-4d18-ab99-58ec9c683deb",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "50caa3d2-2a5d-48d8-b728-458283efd905",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "walk",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "cb06b768-9580-4cf1-89d4-08da88a17fac",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "53035bb5-e027-443a-8d36-02ee5411e4e0",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "walk",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8eba3901-facc-4f6a-a548-8d069c647e10",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard&Mouse",
+            "bindingGroup": "Keyboard&Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Touch",
+            "bindingGroup": "Touch",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Joystick",
+            "bindingGroup": "Joystick",
+            "devices": [
+                {
+                    "devicePath": "<Joystick>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "XR",
+            "bindingGroup": "XR",
+            "devices": [
+                {
+                    "devicePath": "<XRController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

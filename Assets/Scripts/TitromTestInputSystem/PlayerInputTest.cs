@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputTest : MonoBehaviour
 {
     [Range(0f, 1f)]
     [SerializeField] public float speed;
