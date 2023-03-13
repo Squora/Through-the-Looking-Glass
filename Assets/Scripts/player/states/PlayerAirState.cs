@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerAirState : PlayerBaseState
 {
-    [SerializeField] private float jumpForceImpulse;
-    [SerializeField] private float jumpForceHold;
-    [SerializeField] private float timeForJump;
-    [SerializeField] private float gravityForceFall=9;
+    [SerializeField] private float _jumpForceImpulse=15f;
+    [SerializeField] private float _jumpForceHold=3;
+    [SerializeField] private float _timeForJump=0.3f;
+    [SerializeField] private float _gravityForceFall = 9;
 
-    [SerializeField] private float airHorisontalMovementSpeed;
-    private float jumpTimer;
-    private bool jumping=false;
+    [SerializeField] private float _airHorisontalMovementSpeed=12f;
+    private float _jumpTimer;
+    private bool _jumping = false;
     public override void StateStart(PlayerStatesManager player)
     {
         stateNumberSwitch = 0;
@@ -29,30 +29,30 @@ public class PlayerAirState : PlayerBaseState
 
         player.playerRigidbody2D.velocity = airMovement(player.input.actions["walk"].ReadValue<float>(),player.playerRigidbody2D);
 
-        if ((Time.time - jumpTimer >= timeForJump))
+        if ((Time.time - _jumpTimer >= _timeForJump))
         {
-            jumping = false;
+            _jumping = false;
         }
 
-        if (jumping)
+        if (_jumping)
         {
 
-            player.playerRigidbody2D.AddForce(Vector2.up * jumpForceHold, ForceMode2D.Force);
+            player.playerRigidbody2D.AddForce(Vector2.up * _jumpForceHold, ForceMode2D.Force);
 
         }
         else
         {
-            player.playerRigidbody2D.gravityScale = gravityForceFall;
+            player.playerRigidbody2D.gravityScale = _gravityForceFall;
         }
       
     }
-    private void jump(Rigidbody2D rigidbody2D)
+    private void jump(Rigidbody2D _rigidbody2D)
     {
-        rigidbody2D.AddForce(Vector2.up * jumpForceImpulse, ForceMode2D.Impulse);
+        _rigidbody2D.AddForce(Vector2.up * _jumpForceImpulse, ForceMode2D.Impulse);
 
-        jumpTimer = Time.time;
+        _jumpTimer = Time.time;
 
-        jumping = true;
+        _jumping = true;
     }
     private void jumpButtonRelease(InputAction.CallbackContext context)
     {
@@ -60,15 +60,15 @@ public class PlayerAirState : PlayerBaseState
         {
             if (context.canceled)
             {
-                jumping = false;
+                _jumping = false;
             }
         }
 
     }
-    private Vector2 airMovement(float direction,Rigidbody2D rigidbody2D)
+    private Vector2 airMovement(float _direction, Rigidbody2D _rigidbody2D)
     {
 
-        return new Vector2(direction * airHorisontalMovementSpeed, rigidbody2D.velocity.y);
+        return new Vector2(_direction * _airHorisontalMovementSpeed, _rigidbody2D.velocity.y);
 
     }
 }

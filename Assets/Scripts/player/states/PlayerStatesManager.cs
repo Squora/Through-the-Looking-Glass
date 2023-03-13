@@ -19,20 +19,20 @@ public class PlayerStatesManager : MonoBehaviour
 
     [HideInInspector] public PlayerAirState airState;
 
-    private BoxCollider2D playerBoxCollider2D;
+    private BoxCollider2D _playerBoxCollider2D;
 
-    [SerializeField] private Vector2 playerGroundCollisionCheckBox;
+    [SerializeField] private Vector2 _playerGroundCollisionCheckBox=new Vector2(1,1);
 
-    [SerializeField] private float normalGravityScale;
+    [SerializeField] private float _normalGravityScale=1f;
 
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask _groundLayer=0;
     void Start()
     {
         input = GetComponent<PlayerInput>();
 
         playerRigidbody2D = GetComponent<Rigidbody2D>();
 
-        playerBoxCollider2D = GetComponentInChildren<BoxCollider2D>();
+        _playerBoxCollider2D = GetComponentInChildren<BoxCollider2D>();
 
         idleState = GetComponent<PlayerIdleState>();
 
@@ -71,10 +71,10 @@ public class PlayerStatesManager : MonoBehaviour
 
     private void groundCollisionCheck()
     {
-        RaycastHit2D groundCheck = Physics2D.BoxCast(transform.position - Vector3.up * playerBoxCollider2D.size.y / 2, playerGroundCollisionCheckBox, 0, Vector2.down, 0, groundLayer);
+        RaycastHit2D groundCheck = Physics2D.BoxCast(transform.position - Vector3.up * _playerBoxCollider2D.size.y / 2, _playerGroundCollisionCheckBox, 0, Vector2.down, 0, _groundLayer);
 
-        Debug.DrawRay(transform.position - Vector3.right * playerBoxCollider2D.size.x / 2, Vector2.down * playerGroundCollisionCheckBox.y);
-        Debug.DrawRay(transform.position + Vector3.right * playerBoxCollider2D.size.x / 2, Vector2.down * playerGroundCollisionCheckBox.y);
+        Debug.DrawRay(transform.position - Vector3.right * _playerBoxCollider2D.size.x / 2, Vector2.down * _playerGroundCollisionCheckBox.y);
+        Debug.DrawRay(transform.position + Vector3.right * _playerBoxCollider2D.size.x / 2, Vector2.down * _playerGroundCollisionCheckBox.y);
 
 
         if ((groundCheck.collider == true) && (currentState == airState) && (playerRigidbody2D.velocity.y <= 0))
@@ -87,12 +87,13 @@ public class PlayerStatesManager : MonoBehaviour
             {
                 SwitchState(walkState);
             }
-            playerRigidbody2D.gravityScale = normalGravityScale;
+            playerRigidbody2D.gravityScale = _normalGravityScale;
 
         }
         if ((groundCheck.collider == false) && (currentState != airState))
         {
             currentState = airState;
+            playerRigidbody2D.gravityScale = 9f;
 
         }
     }

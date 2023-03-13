@@ -4,20 +4,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerWalkState : PlayerBaseState
 {
-    [SerializeField] private float walkingSpeed;
-    private float walkingDirection;
-    Vector2 walkingVector;
+    [SerializeField] private float _walkingSpeed=12f;
+    private float _walkingDirection;
+    Vector2 _walkingVector;
     public override void StateStart(PlayerStatesManager player)
     {
         stateNumberSwitch = 0;
     }
     public override void StateUpdate(PlayerStatesManager player)
     {
-        walkingDirection = player.input.actions["walk"].ReadValue<float>();
+        _walkingDirection = player.input.actions["walk"].ReadValue<float>();
         player.input.onActionTriggered += InputStatesSwitch;
-        if (walkingDirection == 0)
+        if (_walkingDirection == 0)
         {
-            player.playerRigidbody2D.velocity = walking(0, 0);
+            player.playerRigidbody2D.velocity = Walking(0, 0);
             player.SwitchState(player.idleState);
         }
         switch (stateNumberSwitch)
@@ -28,11 +28,11 @@ public class PlayerWalkState : PlayerBaseState
     }
     public override void StateFixedUpdate(PlayerStatesManager player)
     {
-        player.playerRigidbody2D.velocity = walking(walkingDirection, player.playerRigidbody2D.velocity.y);
+        player.playerRigidbody2D.velocity = Walking(_walkingDirection, player.playerRigidbody2D.velocity.y);
     }
-    private Vector2 walking(float direction,float speedCoordY)
+    private Vector2 Walking(float direction,float speedCoordY)
     {
-       return new Vector2(direction* walkingSpeed, speedCoordY);
+       return new Vector2(direction* _walkingSpeed, speedCoordY);
     }
     private void InputStatesSwitch(InputAction.CallbackContext context)
     {
