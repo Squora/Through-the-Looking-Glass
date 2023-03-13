@@ -29,7 +29,6 @@ public class PlayerInputTest : MonoBehaviour
         ConnectInputSystemModule();
 
         ConnectEvent();
-
     }
 
     private void ConnectInputSystemModule()
@@ -43,7 +42,6 @@ public class PlayerInputTest : MonoBehaviour
 
     private void ConnectEvent()
     {
-
         FindObjectOfType<DialogSystem>().onMove += () => { _move.Enable(); };
 
         FindObjectOfType<DialogSystem>().onNextDialog += (typeDialog) =>
@@ -64,7 +62,6 @@ public class PlayerInputTest : MonoBehaviour
 
     private void StartTalk(CallbackContext callback)
     {
-
         FindObjectOfType<DialogSystem>().StartDialog(_npc.GetComponent<NPC>().dialogs);
         _move.Disable();
         _talk.Disable();
@@ -92,13 +89,11 @@ public class PlayerInputTest : MonoBehaviour
     private void OnEnable()
     {
         _move.Enable();
-
     }
     private void OnDisable()
     {
         _move.Disable();
         _talk.Disable();
         _nextDialog.Disable();
-
     }
 }

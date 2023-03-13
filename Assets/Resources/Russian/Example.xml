@@ -1,0 +1,15 @@
+<dialogue name="Example">
+  <node id="0" npcName ="Шаман" npcText="Привет, я шаман, а тебя как зовут?">
+    <answer text="Меня? А тебе какое дело?" toNode="1" />
+    <answer text="Саша меня зовут." toNode="2" />
+    <answer text="Пока." exit="True" />
+  </node>
+  <node id="1" npcText="Какой грубиян... прощай.">
+    <answer text="..." exit="True" />
+  </node>
+  <node id="2" npcText="А что ты тут делаешь?">
+    <answer text="Я... Сам не знаю пока" toNode="1" />
+    <answer text="У меня нет времени болтать с тобой" exit="True" />
+    <answer text="..." exit="True" />
+  </node>
+</dialogue>

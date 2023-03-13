@@ -1,0 +1,12 @@
+<dialogue>
+  <node id="0">
+    <npcText>Hello World!</npcText>
+    <answer toNode="1">Hi</answer>
+    <answer exit="True">Wassup!</answer>
+  </node>
+  <node id="1">
+    <npcText>Okay buddy, good luck</npcText>
+    <answer exit="True">GL</answer>
+    <answer exit="True">BB</answer>
+  </node>
+</dialogue>

@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 1047367959}
   - component: {fileID: 1047367958}
   - component: {fileID: 1047367957}
+  - component: {fileID: 1047367965}
   m_Layer: 3
   m_Name: player
   m_TagString: Untagged
@@ -354,11 +355,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateNumberSwitch: 0
-  jumpForceImpulse: 15
-  jumpForceHold: 3
-  timeForJump: 0.3
-  gravityForceFall: 9
-  airHorisontalMovementSpeed: 15
+  _jumpForceImpulse: 1
+  _jumpForceHold: 1
+  _timeForJump: 1
+  _gravityForceFall: 1
+  _airHorisontalMovementSpeed: 1
 --- !u!114 &1047367958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateNumberSwitch: 0
-  walkingSpeed: 15
+  _walkingSpeed: 50
 --- !u!114 &1047367959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,7 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateNumberSwitch: 0
-  walkingSpeed: 7
+  _walkingSpeed: 100
 --- !u!114 &1047367961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,11 +420,11 @@ MonoBehaviour:
   crouchState: {fileID: 0}
   walkState: {fileID: 0}
   airState: {fileID: 0}
-  playerGroundCollisionCheckBox: {x: 5, y: 2}
-  normalGravityScale: 1
-  groundLayer:
+  _playerGroundCollisionCheckBox: {x: 0, y: 0}
+  _normalGravityScale: 0
+  _groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
 --- !u!114 &1047367962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +449,19 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 549c71ac-2aee-4ad5-941a-0ed809503b3c
+    m_ActionName: player/jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 066aa266-3e87-44d3-8321-7283211d83be
+    m_ActionName: player/walk[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 372f34c7-282b-45b3-a51c-8f6db2098fa0
+    m_ActionName: player/crouch[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: player
@@ -491,6 +504,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1047367965
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047367956}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1123424392
 GameObject:
   m_ObjectHideFlags: 0
