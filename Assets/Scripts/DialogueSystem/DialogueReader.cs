@@ -18,14 +18,14 @@ public class DialogueReader : MonoBehaviour
         _gui = FindObjectOfType<DialogueGUI>();
     }
 
-    public void DialogueStart(string name)
+    public void StartDialogue(string name)
     {
         if (name == string.Empty) return;
         _fileName = name;
         Load();
     }
 
-    public void DialogueStop() 
+    public void StopDialogue() 
     { 
         _gui.HideDialogue();
     }
@@ -78,6 +78,7 @@ public class DialogueReader : MonoBehaviour
 
             _lastName = _fileName;
             reader.Close();
+            Debug.Log("XML file was successfully read");
         }
         catch (System.Exception error)
         {

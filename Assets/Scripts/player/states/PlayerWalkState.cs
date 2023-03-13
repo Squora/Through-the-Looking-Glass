@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerWalkState : PlayerBaseState
 {
-    [SerializeField] private float _walkingSpeed=12f;
+    [SerializeField] private float _walkingSpeed = 12f;
     private float _walkingDirection;
     Vector2 _walkingVector;
 
