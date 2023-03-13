@@ -12,12 +12,10 @@ public class PlayerIdleState : PlayerBaseState
     public override void StateUpdate(PlayerStatesManager player)
     {
         player.input.onActionTriggered += InputStatesSwitch;
-
         if (player.input.actions["walk"].ReadValue<float>() != 0)
         {
             player.SwitchState(player.walkState);
         }
-
         switch (stateNumberSwitch)
         {
             case 1: player.SwitchState(player.airState); break;
@@ -25,7 +23,10 @@ public class PlayerIdleState : PlayerBaseState
         }
     }
 
-    public override void StateFixedUpdate(PlayerStatesManager player) { }
+    public override void StateFixedUpdate(PlayerStatesManager player)
+    {
+
+    }
 
     private void InputStatesSwitch(InputAction.CallbackContext context)
     {

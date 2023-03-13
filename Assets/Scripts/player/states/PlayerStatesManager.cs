@@ -21,12 +21,11 @@ public class PlayerStatesManager : MonoBehaviour
 
     private BoxCollider2D _playerBoxCollider2D;
 
-    [SerializeField] private Vector2 _playerGroundCollisionCheckBox;
+    [SerializeField] private Vector2 _playerGroundCollisionCheckBox = new Vector2(1, 1);
 
-    [SerializeField] private float _normalGravityScale;
+    [SerializeField] private float _normalGravityScale = 1f;
 
-    [SerializeField] private LayerMask _groundLayer;
-
+    [SerializeField] private LayerMask _groundLayer = 0;
     void Start()
     {
         input = GetComponent<PlayerInput>();
@@ -47,6 +46,7 @@ public class PlayerStatesManager : MonoBehaviour
 
         currentState.StateStart(this);
     }
+
 
     void Update()
     {
@@ -72,8 +72,11 @@ public class PlayerStatesManager : MonoBehaviour
         RaycastHit2D groundCheck = Physics2D.BoxCast(transform.position - Vector3.up * _playerBoxCollider2D.size.y / 2, 
             _playerGroundCollisionCheckBox, 0, Vector2.down, 0, _groundLayer);
 
-        Debug.DrawRay(transform.position - Vector3.right * _playerBoxCollider2D.size.x / 2, Vector2.down * _playerGroundCollisionCheckBox.y);
-        Debug.DrawRay(transform.position + Vector3.right * _playerBoxCollider2D.size.x / 2, Vector2.down * _playerGroundCollisionCheckBox.y);
+        Debug.DrawRay(transform.position - Vector3.right * _playerBoxCollider2D.size.x / 2, Vector2.down * 
+            _playerGroundCollisionCheckBox.y);
+        Debug.DrawRay(transform.position + Vector3.right * _playerBoxCollider2D.size.x / 2, Vector2.down * 
+            _playerGroundCollisionCheckBox.y);
+
 
         if ((groundCheck.collider == true) && (currentState == airState) && (playerRigidbody2D.velocity.y <= 0))
         {
@@ -91,6 +94,8 @@ public class PlayerStatesManager : MonoBehaviour
         if ((groundCheck.collider == false) && (currentState != airState))
         {
             currentState = airState;
+            playerRigidbody2D.gravityScale = 9f;
+
         }
     }
 }

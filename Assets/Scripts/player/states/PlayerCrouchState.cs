@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerCrouchState : PlayerBaseState
 {
-    [SerializeField] private float _walkingSpeed;
+    [SerializeField] private float _walkingSpeed=7f;
     private float _walkingDirection;
-    //Vector2 walkingVector;
+    Vector2 _walkingVector;
     private Transform _spriteTransform;
+
     public override void StateStart(PlayerStatesManager player)
     {
         _spriteTransform = transform.GetComponentInChildren<Transform>();
@@ -15,6 +16,7 @@ public class PlayerCrouchState : PlayerBaseState
         transform.position = transform.position - _spriteTransform.localScale.y / 2 * Vector3.up;
         stateNumberSwitch = 0;
     }
+
     public override void StateUpdate(PlayerStatesManager player)
     {
         _walkingDirection = player.input.actions["walk"].ReadValue<float>();
@@ -23,23 +25,16 @@ public class PlayerCrouchState : PlayerBaseState
         switch (stateNumberSwitch)
         {
             case 1: _spriteTransform.localScale = new Vector3(_spriteTransform.localScale.x, _spriteTransform.localScale.y * 2);
-                Walking(0, player.playerRigidbody2D.velocity.y); player.SwitchState(player.airState);
+                Walking(0, player.playerRigidbody2D.velocity.y); player.SwitchState(player.airState); 
                 break;
 
             case 2:
                 _spriteTransform.localScale = new Vector3(_spriteTransform.localScale.x, _spriteTransform.localScale.y * 2);
-                if (player.playerRigidbody2D.velocity.x != 0)
-                {
-                    player.SwitchState(player.walkState);
-                }
-                else 
-                { 
-                    player.SwitchState(player.idleState);
-                }
+                if (player.playerRigidbody2D.velocity.x != 0) { player.SwitchState(player.walkState); }
+                else { player.SwitchState(player.idleState); }
                 break;
         }
     }
-
     public override void StateFixedUpdate(PlayerStatesManager player)
     {
         player.playerRigidbody2D.velocity = Walking(_walkingDirection, player.playerRigidbody2D.velocity.y);
@@ -57,10 +52,13 @@ public class PlayerCrouchState : PlayerBaseState
             switch (context.action.name)
             {
                 case "jump": stateNumberSwitch = 1; break;
+
+                
+
             }
         }
 
-        if ((context.canceled) && (context.action.name=="crouch"))
+        if (context.canceled && (context.action.name=="crouch"))
         {
             stateNumberSwitch = 2;
         }
