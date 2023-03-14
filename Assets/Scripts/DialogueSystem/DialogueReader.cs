@@ -13,6 +13,8 @@ public class DialogueReader : MonoBehaviour
     private Answer _answer;
     private DialogueGUI _gui;
 
+    public bool EnableDebugging = true;
+
     void Start()
     {
         _gui = FindObjectOfType<DialogueGUI>();
@@ -22,7 +24,7 @@ public class DialogueReader : MonoBehaviour
     {
         if (name == string.Empty) return;
         _fileName = name;
-        Load();
+        ParseDialogueFile();
     }
 
     public void StopDialogue() 
@@ -30,7 +32,7 @@ public class DialogueReader : MonoBehaviour
         _gui.HideDialogue();
     }
 
-    void Load()
+    void ParseDialogueFile()
     {
         if (_lastName == _fileName)
         {
@@ -78,11 +80,11 @@ public class DialogueReader : MonoBehaviour
 
             _lastName = _fileName;
             reader.Close();
-            Debug.Log("XML file was successfully read");
+            if (EnableDebugging) Debug.Log("XML file was successfully read");
         }
         catch (System.Exception error)
         {
-            Debug.Log(this + " Ошибка чтения файла диалога: " + _fileName + ".xml >> Error: " + error.Message);
+            if (EnableDebugging) Debug.Log(this + " Ошибка чтения файла диалога: " + _fileName + ".xml >> Error: " + error.Message);
             _lastName = string.Empty;
         }
         _gui.ShowDialogue(0);
